@@ -1,0 +1,157 @@
+<!doctype html>
+<!-- Ruben Gilbert -->
+<!-- May 18, 2015 -->
+<!-- CS 461 Final Project -->
+
+<html lang="en">
+<head>
+    
+    <title>Final Project</title>
+    <script type="text/javascript" src="../lib/webgl-utils.js"></script>
+    <script type="text/javascript" src="../lib/MV.js"></script>
+    <script type="text/javascript" src="../lib/InitShaders.js"></script>
+    <script type="text/javascript" src="rgilbert_final_2.js"></script>
+    
+    <!-- -->
+    <!-- -->
+    <!-- Default Shader -->
+    <!-- -->
+    <!-- -->
+    <script id="vertex-shader" type="x-shader/x-vertex">
+		
+        precision mediump float;
+        attribute vec4 a_Position;      // position data
+        attribute vec3 a_Normal;        // normals data
+        //attribute vec2 a_TexCoord;      // texture data
+
+        uniform mat4 u_ViewMatrix;      // view matrix
+        uniform mat4 u_ModelMatrix;     // model matrix
+        uniform mat4 u_Projection;      // projection matrix 
+
+        varying vec4 v_Position;        // varyings to pass to frag shader
+        varying vec3 v_Normal;
+        //varying vec2 v_TexCoord;
+
+        void main(){
+
+            // set our position
+            gl_Position = u_Projection * u_ViewMatrix * u_ModelMatrix * a_Position;
+
+            // pass data to frag shader
+            v_Position = a_Position;
+            v_Normal = a_Normal;
+            //v_TexCoord = a_TexCoord;
+
+        }
+    </script>
+    <script id="fragment-shader" type="x-shader/x-fragment">
+
+        precision mediump float;
+
+        //uniform sampler2D u_SamplerFloor;
+
+        varying vec4 v_Position;
+        varying vec3 v_Normal;
+        //varying vec2 v_TexCoord;
+        
+        void main(){
+
+            gl_FragColor = vec4(abs(v_Normal), 1.0);
+            //gl_FragColor = abs(v_Position);
+
+        }
+    </script>
+
+    <!-- -->
+    <!-- -->
+    <!-- Phong Shader -->
+    <!-- -->
+    <!-- -->
+
+    <script id="vertex-shader-phong" type="x-shader/x-vertex">
+
+            attribute vec4 a_Position;
+            attribute vec3 a_Normal;
+            
+            uniform mat4 u_Projection;
+            uniform mat4 u_ViewMatrix;
+            uniform mat4 u_ModelMatrix;
+            
+            varying vec3 v_Position;
+            varying vec3 v_Normal;
+            varying vec3 v_LightPosition;
+            varying vec3 v_Color;
+        
+            
+            void main(){
+            
+                gl_Position = u_Projection * u_ViewMatrix * u_ModelMatrix * a_Position;
+                
+                v_LightPosition = (u_ViewMatrix * vec4(2.0, -3.0, 2.0, 1.0)).xyz;
+                v_Position = (u_ViewMatrix * u_ModelMatrix * a_Position).xyz;
+                v_Normal = mat3(u_ViewMatrix * u_ModelMatrix) * a_Normal;
+                v_Color = abs(a_Normal);
+                
+                
+            }
+        </script>
+        
+        <script id="fragment-shader-phong" type="x-shader/x-fragment">
+            precision mediump float;
+            
+            varying vec3 v_Position;
+            varying vec3 v_Normal;
+            varying vec3 v_LightPosition;
+            varying vec3 v_Color;
+            
+            vec3 L, N, V, H, P;
+            vec3 ambient, diffuse, specular;
+            void main(){
+                vec3 light_ambient = vec3(0.2, 0.2, 0.2);
+                vec3 light_diffuse = vec3(0.9, 0.9, 0.9);
+                vec3 light_specular = vec3(0.5, 0.5, 0.5);
+                float shininess = 2.0;
+                
+                
+                P = v_Position;
+            
+                N = normalize(v_Normal);
+                L = normalize(v_LightPosition - P);
+                V = normalize( -P);
+                H = normalize(L+V);
+                
+                
+                ambient = v_Color * light_ambient;
+                diffuse = v_Color * max(dot(L, N), 0.0)* light_diffuse;
+                specular = max(v_Color * pow(max(dot(N, H), 0.0), shininess) * light_specular, 0.0) ;
+                
+                
+                gl_FragColor = vec4(ambient + diffuse + specular, 1.0);
+            
+            
+            }
+        </script>
+
+    <!-- End Shaders -->
+
+</head>
+
+<body>
+    <h1>Object File Reader by Ruben Gilbert - CS461 Final Project</h1>
+    <p> This application reads in .obj files and parses them for vertex, texture, and normal data and displays the corresponding object.  It uses a simple phong lighting scheme (lighting is normally specified in the material files, but there were complications with this--noted in the summary paper).  The mesh is colored based on the (absolute value) of the normal at each vertex.  Use the dropdown to select between the different pre-loaded .obj files.  The app supports .obj files with triangles or quads.  If normals aren't provided in the .obj file, this app will calculate them for you.</p>
+
+    <p>
+        <select id="dropdown">
+            <option value="katarina">Katarina</option>
+            <option value="thor">Hammer</option>
+            <option value="werewolf">Werewolf</option>
+            <option value="bunny">Bunny</option>
+            <option value="muro">Muro</option>
+        </select>
+    </p>
+
+    <canvas id="gl-canvas" width="960" height="540" style="border:1px solid black">
+        If you see this, you need a better browser
+    </canvas>
+</body>
+</html>

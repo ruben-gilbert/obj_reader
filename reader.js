@@ -18,7 +18,7 @@ window.onload = function main() {
 	var dropdown = document.getElementById("dropdown");
 
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-	var file = "./Lol_Katarina_Default.obj";
+	var file = "./example_OBJs/kat.obj";
 	readOBJFile(gl, file);
 
 	// based on dropdown selection, display the .obj file
@@ -26,27 +26,27 @@ window.onload = function main() {
 		if (dropdown.value == "bunny") {
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 			materialData = [];
-			var file = "./bunny.obj";
+			var file = "./example_OBJs/bunny.obj";
 			readOBJFile(gl, file);
 		} else if (dropdown.value == "katarina") {
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 			materialData = [];
-			var file = "./Lol_Katarina_Default.obj";
+			var file = "./example_OBJs/kat.obj";
 			readOBJFile(gl, file);
 		} else if (dropdown.value == "muro") {
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 			materialData = [];
-			var file = "./muro.obj";
+			var file = "./example_OBJs/muro.obj";
 			readOBJFile(gl, file);
 		} else if (dropdown.value == "thor") {
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 			materialData = [];
-			var file = "./thor.obj";
+			var file = "./example_OBJs/thor.obj";
 			readOBJFile(gl, file);
 		} else if (dropdown.value == "werewolf") {
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 			materialData = [];
-			var file = "./werewolf.obj";
+			var file = "./example_OBJs/werewolf.obj";
 			readOBJFile(gl, file);
 		}
 	}

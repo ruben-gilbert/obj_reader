@@ -1,10 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <!-- Ruben Gilbert -->
 
 <html lang="en">
 <head>
 
-    <title>Final Project</title>
+    <title>OBJ Reader</title>
     <script type="text/javascript" src="./lib/webgl-utils.js"></script>
     <script type="text/javascript" src="./lib/MV.js"></script>
     <script type="text/javascript" src="./lib/InitShaders.js"></script>
@@ -135,8 +135,9 @@
 </head>
 
 <body>
-    <h1>Object File Reader by Ruben Gilbert - CS461 Final Project</h1>
-    <p> This application reads in .obj files and parses them for vertex, texture, and normal data and displays the corresponding object.  It uses a simple phong lighting scheme (lighting is normally specified in the material files, but there were complications with this--noted in the summary paper).  The mesh is colored based on the (absolute value) of the normal at each vertex.  Use the dropdown to select between the different pre-loaded .obj files.  The app supports .obj files with triangles or quads.  If normals aren't provided in the .obj file, this app will calculate them for you.</p>
+    <h1>Object File Reader</h1>
+    <p>Might be potentially buggy for a bit...</p>
+    <p>Requires a web server to be running to operate properly</p>
 
     <p>
         <select id="dropdown">

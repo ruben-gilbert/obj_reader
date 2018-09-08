@@ -1160,7 +1160,7 @@ function ObjectModel(data, gl) {
 
     // NOTE: Commenting out Texture Buffer and related data
     // because it is not possible with this implementation to
-    // get textures to work properly.  Explained more in summary paper.
+    // get textures to work properly.
 
     /*textureBuffer = gl.createBuffer();
     if (!textureBuffer) {
@@ -1343,7 +1343,6 @@ function display(gl, obj) {
 // function to initialize a texture image for use in the maze
 // NOTE: In this program this function is unused because of the
 // way textures are dealt with.  Leaving it for future implementation.
-// Explained further in summary paper.
 function initializeTexture(gl, textureid, filename, uniform) {
 
     return new Promise(function(resolve, reject) {

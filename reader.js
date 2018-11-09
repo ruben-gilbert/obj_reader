@@ -1340,7 +1340,7 @@ function display(gl, obj) {
     tick();
 }
 
-// function to initialize a texture image for use in the maze
+// function to initialize a texture image
 // NOTE: In this program this function is unused because of the
 // way textures are dealt with.  Leaving it for future implementation.
 function initializeTexture(gl, textureid, filename, uniform) {

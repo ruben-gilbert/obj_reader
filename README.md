@@ -1,5 +1,7 @@
 Simple OBJ file reader.  A couple bugs/oversights.  Probably needs a rewrite.
 
+<img src="https://puu.sh/Ccbmi/be0e520afd.gif" width=640 height=362 alt="kat">
+
 If running locally, you'll need a webserver to be running.
 
 For example, using Python:

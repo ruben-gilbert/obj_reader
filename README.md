@@ -1,13 +1,9 @@
-Simple OBJ file reader.  A couple bugs/oversights.  Probably needs a rewrite.
+# Simple WebGL .OBJ File Reader
 
 <img src="https://puu.sh/Ccbmi/be0e520afd.gif" width=640 height=362 alt="kat">
 
-If running locally, you'll need a webserver to be running.
+# How to run
 
-For example, using Python:
+Assuming you are running locally, you'll need a web server on the localhost loopback.  For example, using Python, run `$ python3 -m http.server` in the directory with the _reader.html_ and _reader.js_
 
-```
-$ python3 -m http.server
-```
-
-Then, assuming your local server is listening to port 8000, visit `http://localhost:8000/reader.html` to load the application.  You may receive an error that a material file cannot be loaded -- you can safely proceed through it.
+Then, assuming your local server is listening to port 8000, visit `http://localhost:8000/reader.html` to load the application.

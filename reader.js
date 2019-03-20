@@ -1,5 +1,5 @@
 // Author: Ruben Gilbert
-//
+// 2015
 // reader.js
 //
 
@@ -1035,7 +1035,8 @@ function ObjectModel(data, gl) {
 			var materialFile = tokens[1];
 
 			// set up a promise that validates the material data.  Once the
-			// data has been received, we can proceed consturcting the texture
+			// data has been received, we can proceed constructing the texture
+			/*
 			Promise.all(
 				[matPromise = readMTLFile(materialFile)]
 				)
@@ -1051,18 +1052,15 @@ function ObjectModel(data, gl) {
 				var diffuseFile = materialData[5];
 				var specularFile = materialData[6];
 
-				// NOTE: The way the code is factored prevents these variables
+				// TODO: The way the code is written prevents these variables
 				// from being seen by the buffers later because of the way
-				// promises work.  The code completes before the promise completes
-				// and these variables are seen.  These variables WOULD be used to
-				// pass to uniforms in the shaders to create realistic textures
-				// for the corresponding model and the lighting values for which
-				// the scene was designed under.  Explained more in summary paper.
+				// promises work.  
 
 			})
 			.catch(function(error) {
 				alert("Failed to read material data" + error.message);
 			});
+			*/
 
 		}
 
@@ -1155,12 +1153,9 @@ function ObjectModel(data, gl) {
     if (!normalBuffer) {
         console.log('Failed to create the normal buffer object');
         return -1;
-    }
-
-
-    // NOTE: Commenting out Texture Buffer and related data
-    // because it is not possible with this implementation to
-    // get textures to work properly.
+	}
+	
+	// TODO textures
 
     /*textureBuffer = gl.createBuffer();
     if (!textureBuffer) {
